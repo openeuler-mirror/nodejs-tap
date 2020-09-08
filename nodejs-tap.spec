@@ -6,7 +6,7 @@ Release:             1
 Summary:             A Test Anything Protocol library
 License:             MIT
 URL:                 https://github.com/isaacs/node-tap
-Source0:             https://github.com/tapjs/node-tap/archive/v0.7.1.tar.gz
+Source0:             https://github.com/isaacs/node-tap/archive/v%{version}.tar.gz
 BuildArch:           noarch
 ExclusiveArch:       %{nodejs_arches} noarch
 BuildRequires:       nodejs-packaging
@@ -21,7 +21,7 @@ harnesses and frameworks that communicate with one another using the
 Test Anything Protocol.
 
 %prep
-%setup -q -n node-tap-%{version}
+%autosetup -n node-tap-%{version}
 %nodejs_fixdep deep-equal '^1.0.1'
 %nodejs_fixdep glob '^6.0.3'
 %nodejs_fixdep inherits 1
