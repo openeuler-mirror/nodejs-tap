@@ -52,6 +52,7 @@ rm -f test/debug-test.js
 %files
 %{nodejs_sitelib}/tap
 %{_bindir}/tap
+%{macrosdir}/macros.tap
 %doc coverage-example example README.md AUTHORS LICENSE
 
 %changelog
