@@ -1,0 +1,4 @@
+# Macros to call tap in %%check
+# in case we want to pass options to tap later on, e.g. to increase the timeout
+%__tap /usr/bin/tap
+%tap %{__tap}
