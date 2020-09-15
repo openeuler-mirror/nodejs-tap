@@ -2,11 +2,12 @@
 %global enable_tests 1
 Name:                nodejs-tap
 Version:             0.7.1
-Release:             1
+Release:             2
 Summary:             A Test Anything Protocol library
 License:             MIT
 URL:                 https://github.com/isaacs/node-tap
 Source0:             https://github.com/isaacs/node-tap/archive/v%{version}.tar.gz
+Source1:             macros.nodejs-tap
 BuildArch:           noarch
 ExclusiveArch:       %{nodejs_arches} noarch
 BuildRequires:       nodejs-packaging
@@ -15,6 +16,7 @@ BuildRequires:       gcc npm(buffer-equal) npm(deep-equal) npm(difflet) npm(glob
 BuildRequires:       npm(inherits) = 1.0.0 npm(mkdirp) npm(nopt) npm(runforcover) npm(slide)
 BuildRequires:       npm(yamlish)
 %endif
+
 %description
 This is a mix-and-match set of utilities that you can use to write test
 harnesses and frameworks that communicate with one another using the
@@ -35,6 +37,7 @@ mkdir -p %{buildroot}%{nodejs_sitelib}/tap
 cp -pr bin lib package.json %{buildroot}%{nodejs_sitelib}/tap
 mkdir -p %{buildroot}%{_bindir}
 ln -sf ../lib/node_modules/tap/bin/tap.js %{buildroot}%{_bindir}/tap
+install -Dpm0644 %{SOURCE1} %{buildroot}%{macrosdir}/macros.tap
 chmod 0755 %{buildroot}%{nodejs_sitelib}/tap/bin/*
 %nodejs_symlink_deps
 
@@ -49,8 +52,12 @@ rm -f test/debug-test.js
 %files
 %{nodejs_sitelib}/tap
 %{_bindir}/tap
+%{macrosdir}/macros.tap
 %doc coverage-example example README.md AUTHORS LICENSE
 
 %changelog
+* Mon Sep 14 2020 leiju <leiju4@huawei.com> - 0.7.1-2
+- Add macro file macros.nodejs-tap
+
 * Fri Aug 21 2020 wangyue <wangyue92@huawei.com> - 0.7.1-1
 - package init
